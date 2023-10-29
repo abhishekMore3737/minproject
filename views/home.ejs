@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shopping Site for Fashion, Electronics, Home & More | Meesho</title>
+    <!--fevicon icon-->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/8/80/Meesho_Logo_Full.png" />
+    <style>
+        *{
+    box-sizing: border-box;
+}
+:root{
+    --hoverTextColor:rgb(244, 51, 151);
+    --textColor : rgb(87, 85, 85);
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    color:var(--textColor);
+}
+img{
+    width: 100%;
+}
+.header{
+    height: 72px;
+    outline: 1px solid #ccc;
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 400;
+}
+.headerLeft,
+.headerRight{
+    display: flex;
+    align-items: center;
+}
+.logoContainer{
+    width: 155px;
+}
+
+
+.searchInputContainer{
+    width: 400px;
+    height: 45px;
+    outline:1px solid rgb(126, 126, 126);
+    display: flex;
+    margin-left: 25px;
+    border-radius: 3px;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+}
+.searchIcon{
+    width: 20px;
+    margin: 6px;
+}
+form{
+    width: 100%;
+}
+.inputSearch{
+    width: 100%;
+    border:none;
+    outline: none;
+    font-size: 16px;
+}
+#closeSearch{
+    display: none;
+}
+
+
+.searchRecentModal{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    top:45px;
+    background-color: white;
+    height: 400px;
+    width: 100%;
+    display: none;
+    padding: 15px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+    z-index: 3;
+}
+.searchInputContainer:focus-within .searchRecentModal{
+    display: block;
+    background-color: white;
+}
+.recentIcon{
+    width: 20px;
+    margin-right: 10px;
+}
+.recentItem{
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+
+/***right***/
+.mobileIcon{
+    width: 15px;
+    margin: 5px;
+}
+.downloadContainer{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-right: 20px;
+    position: relative;
+}
+.downloadContainer:hover{
+    color:var(--hoverTextColor);
+    cursor: pointer;
+}
+.downloadBtn{
+    display: block;
+    width: 180px;
+    margin-top: 5px;
+}
+.downloadHoverBtnContainer{
+    position: absolute;
+    bottom: 0;
+    top:40px;
+    /* box-shadow: 0px 0px 5px rgba(0,0,0,0.3); */
+    width: 200px;
+    /* background-color: red; */
+    display: none;
+    height: 200px;
+    padding: 10px;
+    margin-left: -30px;
+    color:var(--textColor);
+    background: white;
+    z-index: 2;
+}
+.downloadContainer:hover .downloadHoverBtnContainer,
+.downloadContainer:focus .downloadHoverBtnContainer{
+    display: block;
+}
+
+.downloadContainer p{
+    margin:0;
+    padding: 0;
+    font-size: 17px;
+}
+
+.profileAndCart{
+    display: flex;
+    align-items: center;
+    
+}
+.profileAndCart:hover,
+.profileAndCart:focus{
+    color: var(--hoverTextColor);
+}
+
+.profileIcon,
+.CartIcon{
+    width: 20px;
+}
+.profileAndCart p{
+    margin:0;
+    padding: 0;
+}
+.profileContainer,
+.CartContainer{
+    padding: 0px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.becomeSupplierContainer{
+    padding: 0px 30px;
+    border-left: 1.5px solid #ccc;
+    border-Right: 1.5px solid #ccc;
+    font-size: 17px;
+}
+
+/**navigation css ***/
+nav{
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    height: 54px;
+    
+}
+nav ul{
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    height: 100%;
+    margin: 0; 
+    position: relative;
+}
+nav ul li{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    /* background-color: red; */
+    border-bottom: 2px solid transparent;
+    cursor: pointer; 
+    
+}
+nav ul li:hover{
+    color:var(--hoverTextColor);
+    border-bottom: 4px solid var(--hoverTextColor);
+}
+
+
+/**module box submenu***/
+.subMenu{
+    position: absolute;
+    /* height: 400px; */
+    top:51px;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    display: none;
+    margin: 0px 10px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    padding: 20px;
+}
+
+nav ul li:hover .subMenu{
+    display: block;
+}
+
+.subMenu p{
+    color:var(--textColor)
+
+}
+.submenuList{
+    display: flex;
+
+}
+.column{
+    margin-right: 40px;
+}
+
+
+
+/**********************lowest price*************************/
+.lowestpriceContainer{
+    display: flex;
+    margin:50px auto;
+    max-width: 1100px;
+    /* background-color: red; */
+}
+.lowestpriceContainer h1{
+    font-size: 40px;
+    margin: 0;
+    color:rgb(36, 31, 31);
+}
+.lowestPrice_text{
+    width: 50%;
+    padding: 25px 0 0 25px;
+}
+.lowestPrice_image{
+    width: 50%;
+}
+.lowestPrice_icon{
+    width: 30px;
+    border-radius: 40px;
+    background-color: rgb(238, 133, 187);   
+}
+.lowestPriceWhay{
+    display: flex;
+    height: 50px;
+    margin: 20px 0;
+}
+.lowestPriceItem{
+    padding:  0 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-right: 2px solid #ccc;
+}
+.lowestPriceItem p{
+    padding-left: 10px;
+}
+.downloadApp_contianer{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    height: 50px;
+    background-color: var(--hoverTextColor);
+    border:none;
+    outline: none;
+    padding: 0 10px;
+    border-radius: 5px;
+    color:white;
+}
+.downloadApp_contianer p{
+    padding: 0px 20px;
+}
+
+
+
+/*topCategoriesFrom*/
+.topCategoriesFrom{
+    width: 1100px;
+    margin: auto;
+}
+.topCategoriesHeading{
+    display: flex;
+    align-items: center;
+    
+}
+.horizontalLine{
+    padding: 1px;
+    background-color: var(--hoverTextColor);
+    width:50%;
+}
+.topCategoriesHeading h1{   
+    width: max-content;
+    width: 1050px;
+    color:rgb(8, 8, 8);
+    font-size: 38px;
+    margin: 0;
+}
+.topCategoreisImage{
+    width: 100%;
+    height: 500px;
+    background-image: url("https://images.meesho.com/images/marketing/1649759774600.jpg");
+    background-repeat: no-repeat;
+    margin-top: 50px;
+    display: flex;
+    align-items: flex-end;
+}
+.topCategoreisImage img{
+    max-width: 300px;
+    margin: 10px;
+    bottom: 0;
+}
+.topCategoreisImage img:first-child{
+    max-width: 400px;
+}
+
+/****/
+.essentialContaienr{
+    width: 100%;
+    height: 500px;
+    background-color: 400px;
+    margin-top: 50px;
+    background-image: url("https://images.meesho.com/images/marketing/1664343269674.jpg");
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.essentialContaienr img{
+    max-width: 180px;
+}
+
+
+.essential_item{
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.essen-btn{
+    margin-left: 100px;
+    margin-top: 20px    ;
+}
+
+/********************************becomesellerBanner_Container*******************/
+.becomesellerBanner_Container{
+    margin: 50px 0px;
+    position: relative;
+
+}
+.becomesellerBanner_Container img{
+    width: 100%;
+}
+.becomeSeller_Content{
+    position: absolute;
+    top:0;
+    right: 0;
+    width: 100%;
+    padding: 40px 0px;
+}
+.becomeSeller_content_content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.becomerSeller_appDownload{
+    position: relative;
+    width: 150px;
+    height: 50px;
+    background-color: black;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.becomerSeller_appDownload img{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+.becomeSeller_content_content h2{
+    color:rgb(85, 133, 248) ;
+    font-size: 30px;
+    margin-bottom: 0;
+}
+.becomeSeller_content_content h1{
+    color: var(--hoverTextColor);
+    font-size: 50px;
+    width: 60%;
+    text-align: right;
+}
+.becomerSeller_appDownload_container{
+    display: flex;
+}
+
+
+/*****************meesho_supper_container***************************/
+.meeesho_benifit_image{
+    width: 20px;
+    margin-right: 10px;
+}
+.meesho_supper_benifit{
+    display: flex;
+    align-items: center;
+    padding: 0px 40px;
+    border-right: 2px solid white;
+    height: 25px;
+}
+.meesho_supper_benifit:first-child{
+    padding: 0;
+    padding-right: 40px;
+}
+.meesho-suppliear_benifit_container{
+    display: flex;
+    align-items: center;
+    margin: 40px 0px;
+}
+.meesho_supper_container{
+    position: relative;
+}
+.meesho_supper_container_content{
+    position: absolute;
+    top: 0;
+    padding: 20px 30px;
+    color:white;
+}
+.signup_btn_now{
+    background-color: white;
+    color:var(--hoverTextColor);
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.Product_container_You{
+    min-height: 500px;
+    /* background-color: #ccc; */
+    padding: 10px;
+}
+.product_container_you_content{
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    height: 100%;
+    gap:30px;
+}
+.product_category_you_aside{
+    /* background-color: red; */
+    height: 100%;
+}
+.product_category_display{
+    /* background-color: green; */
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4,minmax(250px,1fr));
+}
+.search_category_input{
+    display: flex;
+    padding: 15px;
+    font-size: 18px;
+    border:2px solid #ccc;
+    border-radius: 5px;
+}
+.search_category_input input{
+    font-size: 18px;
+    width: 100%;
+    background-color: transparent;
+    border:none;
+    outline: none;
+    padding: 0px 10px;
+}
+.search_category_input input::placeholder{
+    font-size: 15px;
+}
+.display_Category_list{
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+}
+.display_Category_list label{
+    margin: 3px 0px;
+    text-transform: capitalize;
+}
+
+
+.productCard{
+    max-width: 250px;
+    padding: 10px;
+    box-shadow: -1px -1px 5px rgba(0,0,0,0.1),
+    1px 1px 5px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.product_image{
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.product_image img{
+    /* width: 200px; */
+    width: fit-content;
+    height: 170px;
+}
+.product_price{
+    font-weight: 550;
+    font-size: 22px;
+    color:black;
+}
+.product_name{
+    text-transform: capitalize;
+}
+    </style>
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+   
+
+    <!--navigation-->
+    <nav>
+        <ul>
+            <li>Women Ethnic
+                <div class="subMenu">
+                    <div id="womenEthic" class="submenuList">
+
+                    </div>
+                </div>
+            </li>
+            <li>Women Western
+                <div class="subMenu">
+                    <div id="womenWestern" class="submenuList">
+
+                    </div>
+
+                </div>
+            </li>
+            <li>Men
+                <div class="subMenu">
+                    <div id="men" class="submenuList">
+
+                    </div>
+                </div>
+            </li>
+            <li>Kids
+                <div class="subMenu">
+                    <div id="kids" class="submenuList">
+
+                    </div>
+                </div>
+            </li>
+            <li>Home & Kitchen
+                <div class="subMenu">
+                    <div id="HomeAndKitchen" class="submenuList">
+
+                    </div>
+                </div>
+            </li>
+            <li>Beauty & Health
+                <div class="subMenu">
+                    <div id="beautyAndHealth" class="submenuList">
+
+                    </div>
+                </div>
+            </li>
+            <li>Jewellery & Accessories
+                <div class="subMenu">
+                    <div id="JewelleryAndAccessories" class="submenuList">
+
+                    </div>
+                </div>
+            </li>
+            <li>Bags & Footwear
+                <div class="subMenu">
+                    <div id="BagsFootWarId" class="submenuList">
+
+                    </div>
+                </div>
+            </li>
+            <li>Electronics
+                <div class="subMenu">
+                    <div id="ElectronicsId" class="submenuList">
+
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </nav>
+
+    <!--lowest prices-->
+    <div class="lowestpriceContainer">
+        <div class="lowestPrice_text">
+            <h1>Lowest Prices </h1>
+            <h1>Best Quality Shopping</h1>
+            <div class="lowestPriceWhay">
+                <div class="lowestPriceItem">
+                    <div class="lowestPrice_icon">
+                        <img src="https://images.meesho.com/images/pow/freeDelivery.svg" />
+                    </div>
+                    <p>Free Delivery</p>
+                </div>
+
+                <div class="lowestPriceItem">
+                    <div class="lowestPrice_icon">
+                        <img src="https://images.meesho.com/images/pow/cod.svg" />
+                    </div>
+                    <p>Cash on Delivery</p>
+                </div>
+                <div class="lowestPriceItem">
+                    <div class="lowestPrice_icon">
+                        <img src="https://images.meesho.com/images/pow/easyReturns.svg" />
+                    </div>
+                    <p>Easy Returns</p>
+                </div>
+            </div>
+
+            <button class="downloadApp_contianer">
+                <div class="downloadAppIcon">
+                    <img src="https://images.meesho.com/images/pow/playstoreSmallIcon.webp" />
+                </div>
+                <p>Download the Meesho App</p>
+            </button>
+
+        </div>
+        <div class="lowestPrice_image">
+            <img src="https://images.meesho.com/images/marketing/1631722939962.webp" />
+        </div>
+    </div>
+
+
+    <!--Top Categories to choose from-->
+    <div class="topCategoriesFrom">
+        <div class="topCategoriesHeading">
+            <span class="horizontalLine"></span>
+            <h1>Top Categories to choose from</h1>
+            <span class="horizontalLine"></span>
+        </div>
+        <div class="topCategoreisImage">
+            <img src="https://images.meesho.com/images/marketing/1649760442043.webp" />
+            <img src="https://images.meesho.com/images/marketing/1649760423313.webp" />
+            <img src="https://images.meesho.com/images/marketing/1649759799809.webp" />
+        </div>
+
+        <div class="essentialContaienr">
+            <img src="https://images.meesho.com/images/marketing/1664368165450.webp" class="essen-btn" />
+
+            <div class="essential_item">
+                <img src="https://images.meesho.com/images/marketing/1649760808952.webp" />
+                <img src="https://images.meesho.com/images/marketing/1664364866805.webp" />
+            </div>
+
+            <div class="essential_item">
+                <img src="https://images.meesho.com/images/marketing/1649760703179.webp" />
+                <img src="https://images.meesho.com/images/marketing/1664364917657.webp" />
+            </div>
+
+            <div class="essential_item">
+                <img src="https://images.meesho.com/images/marketing/1649760786763.webp" />
+                <img src="https://images.meesho.com/images/marketing/1664364898513.webp" />
+            </div>
+
+        </div>
+
+
+        <div class="becomesellerBanner_Container">
+            <img src="https://images.meesho.com/images/pow/downloadBannerDesktop.webp" class="becomesellerBanner" />
+            <div class="becomeSeller_Content">
+                <div class="becomeSeller_content_content">
+                    <h2>Become a Seller and </h2>
+                    <h1>Start your Online Business
+                        with Zero Investment</h1>
+                    <div class=" becomerSeller_appDownload_container">
+                        <a href="#" class="becomerSeller_appDownload">
+                            <img src="https://images.meesho.com/images/pow/playstoreIcon.webp" />
+                        </a>
+                        <a href="#" class="becomerSeller_appDownload">
+                            <img src="https://images.meesho.com/images/pow/appstoreIcon.webp" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="meesho_supper_container">
+            <img src="https://images.meesho.com/images/pow/supplyBannerDesktop.webp" />
+            <div class="meesho_supper_container_content">
+                <div class="meesho_supper_container_content_content">
+                    <h1>Register as a Meesho Supplier</h1>
+                    <p>Sell your products to crores of customers at 0% commission</p>
+                    <div class="meesho-suppliear_benifit_container">
+                        <div class="meesho_supper_benifit">
+                            <img class="meeesho_benifit_image"
+                                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMCAyMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0wIDEwLjVDMCA0Ljk4IDQuNDggMC41IDEwIDAuNUMxNS41MiAwLjUgMjAgNC45OCAyMCAxMC41QzIwIDE2LjAyIDE1LjUyIDIwLjUgMTAgMjAuNUM0LjQ4IDIwLjUgMCAxNi4wMiAwIDEwLjVaTTcuMjgyODggMTQuNzkyNUM3LjY3Mjg4IDE1LjE4MjUgOC4zMDI4OCAxNS4xODI1IDguNjkyODggMTQuNzkyNUwxNi4yNzI5IDcuMjAyNUMxNi42NjI5IDYuODEyNSAxNi42NjI5IDYuMTgyNSAxNi4yNzI5IDUuNzkyNUMxNS44ODI5IDUuNDAyNSAxNS4yNTI5IDUuNDAyNSAxNC44NjI5IDUuNzkyNUw3Ljk4Mjg4IDEyLjY3MjVMNS4xMDI4OCA5Ljc5MjVDNC43MTI4OCA5LjQwMjUgNC4wODI4OCA5LjQwMjUgMy42OTI4OCA5Ljc5MjVDMy41MDU2MiA5Ljk3OTMzIDMuNDAwMzkgMTAuMjMzIDMuNDAwMzkgMTAuNDk3NUMzLjQwMDM5IDEwLjc2MiAzLjUwNTYyIDExLjAxNTcgMy42OTI4OCAxMS4yMDI1TDcuMjgyODggMTQuNzkyNVoiIGZpbGw9IiMwNkE3NTkiLz4KPC9zdmc+Cg==" />
+                            <p>Grow your business 10x</p>
+                        </div>
+                        <div class="meesho_supper_benifit">
+                            <img class="meeesho_benifit_image"
+                                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMCAyMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0wIDEwLjVDMCA0Ljk4IDQuNDggMC41IDEwIDAuNUMxNS41MiAwLjUgMjAgNC45OCAyMCAxMC41QzIwIDE2LjAyIDE1LjUyIDIwLjUgMTAgMjAuNUM0LjQ4IDIwLjUgMCAxNi4wMiAwIDEwLjVaTTcuMjgyODggMTQuNzkyNUM3LjY3Mjg4IDE1LjE4MjUgOC4zMDI4OCAxNS4xODI1IDguNjkyODggMTQuNzkyNUwxNi4yNzI5IDcuMjAyNUMxNi42NjI5IDYuODEyNSAxNi42NjI5IDYuMTgyNSAxNi4yNzI5IDUuNzkyNUMxNS44ODI5IDUuNDAyNSAxNS4yNTI5IDUuNDAyNSAxNC44NjI5IDUuNzkyNUw3Ljk4Mjg4IDEyLjY3MjVMNS4xMDI4OCA5Ljc5MjVDNC43MTI4OCA5LjQwMjUgNC4wODI4OCA5LjQwMjUgMy42OTI4OCA5Ljc5MjVDMy41MDU2MiA5Ljk3OTMzIDMuNDAwMzkgMTAuMjMzIDMuNDAwMzkgMTAuNDk3NUMzLjQwMDM5IDEwLjc2MiAzLjUwNTYyIDExLjAxNTcgMy42OTI4OCAxMS4yMDI1TDcuMjgyODggMTQuNzkyNVoiIGZpbGw9IiMwNkE3NTkiLz4KPC9zdmc+Cg==" />
+                            <p>Enjoy 100% Profit</p>
+                        </div>
+                        <div class="meesho_supper_benifit">
+                            <img class="meeesho_benifit_image"
+                                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMCAyMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0wIDEwLjVDMCA0Ljk4IDQuNDggMC41IDEwIDAuNUMxNS41MiAwLjUgMjAgNC45OCAyMCAxMC41QzIwIDE2LjAyIDE1LjUyIDIwLjUgMTAgMjAuNUM0LjQ4IDIwLjUgMCAxNi4wMiAwIDEwLjVaTTcuMjgyODggMTQuNzkyNUM3LjY3Mjg4IDE1LjE4MjUgOC4zMDI4OCAxNS4xODI1IDguNjkyODggMTQuNzkyNUwxNi4yNzI5IDcuMjAyNUMxNi42NjI5IDYuODEyNSAxNi42NjI5IDYuMTgyNSAxNi4yNzI5IDUuNzkyNUMxNS44ODI5IDUuNDAyNSAxNS4yNTI5IDUuNDAyNSAxNC44NjI5IDUuNzkyNUw3Ljk4Mjg4IDEyLjY3MjVMNS4xMDI4OCA5Ljc5MjVDNC43MTI4OCA5LjQwMjUgNC4wODI4OCA5LjQwMjUgMy42OTI4OCA5Ljc5MjVDMy41MDU2MiA5Ljk3OTMzIDMuNDAwMzkgMTAuMjMzIDMuNDAwMzkgMTAuNDk3NUMzLjQwMDM5IDEwLjc2MiAzLjUwNTYyIDExLjAxNTcgMy42OTI4OCAxMS4yMDI1TDcuMjgyODggMTQuNzkyNVoiIGZpbGw9IiMwNkE3NTkiLz4KPC9zdmc+Cg==" />
+                            <p>Sell all over India</p>
+                        </div>
+                    </div>
+                    <a href="#" class="signup_btn_now">Sign up now</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    
+    
+                
+            </aside>
+            <main class="product_category_display" id="product_category_displayId">
+               
+            </main>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script >
+        import BagsFootwear from "./data/BagsFootwear.js"
+import BeautyHealth from "./data/BeautyHealth.js"
+import Electronics from "./data/Electronic.js"
+import HomeAndKitchen from "./data/HomeAndKitchen.js"
+import JewelleryAccessories from "./data/JewelleryAccessories.js"
+import Kids from "./data/Kids.js"
+import Men from "./data/Men.js"
+import WomenEthnic from "./data/WomenEthnic.js"
+import WomenWestern from "./data/WomenWestern.js"
+
+
+
+
+
+let inputSearchEl = document.querySelector(".inputSearch")
+let recentInput = []
+let formInputEl = document.getElementById("inputForm")
+const listofRecentEl = document.querySelector(".listofRecent")
+
+
+
+inputSearchEl.addEventListener("keydown", () => {
+    // console.log(inputSearchEl)
+    if (inputSearchEl.value) {
+        document.getElementById("closeSearch").style.display = "block"
+    }
+    else {
+        document.getElementById("closeSearch").style.display = "none"
+    }
+})
+
+formInputEl.addEventListener("submit", (e) => {
+    e.preventDefault()
+    let listofRecentHTMLEl = ""
+
+    recentInput.unshift(inputSearchEl.value)
+    console.log(recentInput)
+
+    if (recentInput.length > 0) {
+        for (let i = 0; i < recentInput.length; i++) {
+            listofRecentHTMLEl += `
+            <div class="recentItem">
+                <div class="recentIcon">
+                     <img src="./img/recent.png"/>
+                </div>
+                <p>${recentInput[i]}</p>
+            </div>
+        `
+        }
+
+        listofRecentEl.innerHTML = listofRecentHTMLEl
+    }
+})
+
+/*function reuble*****/
+function renderSubMenu(id, data) {
+    let temp = document.getElementById(id)
+    function TempFunc() {
+        return data.map(el => {
+            let list = "";
+            list = el.data.map(element => `<p>${element}</p>`).join(" ")
+            return `
+        <div class="column">
+            <h4>${el.heading}</h4>
+            ${list}
+        </div>
+       `
+        }).join("")
+    }
+    temp.innerHTML = TempFunc()
+}
+
+
+
+
+
+
+/****womenEthic */
+renderSubMenu("womenEthic", WomenEthnic)
+
+/****WomenWestern */
+renderSubMenu("womenWestern", WomenWestern)
+
+//Men 
+renderSubMenu("men", Men)
+
+/***kids */
+renderSubMenu("kids", Kids)
+
+/**home % kitchen */
+renderSubMenu("HomeAndKitchen", HomeAndKitchen)
+
+/**beauty and health */
+renderSubMenu("beautyAndHealth", BeautyHealth)
+
+// Jewellery & Accessories
+renderSubMenu("JewelleryAndAccessories", JewelleryAccessories)
+
+// Bags & Footwear
+renderSubMenu("BagsFootWarId", BagsFootwear)
+
+// Electronics
+renderSubMenu("ElectronicsId", Electronics)
+
+
+
+/**********product section***************/
+import ProductData from "./meesho/data.js"
+
+const category = [...new Set(ProductData.map(el => el.category))]
+console.log(category)
+
+
+let filterData = []
+
+document.addEventListener("click", (e) => {
+
+
+    const bluetoothEl = document.getElementById("bluetooth").checked
+    const ChainsEl = document.getElementById("chains").checked
+    const KurtasEl = document.getElementById("kurtas").checked
+    const AccessoriesEl = document.getElementById("accessories").checked
+    const sareesEl = document.getElementById("sarees").checked
+    const watchEl = document.getElementById("watch").checked
+
+    console.log(bluetoothEl)
+    filterData = ProductData.filter(el => (
+        bluetoothEl && el.category == "bluetooth Headset" ||
+        ChainsEl && el.category == "Men Chains" ||
+        KurtasEl && el.category == "Kurtas" ||
+        AccessoriesEl && el.category == "Mobile Accessories" ||
+        sareesEl && el.category == "sarees" ||
+        watchEl && el.category == "watch"
+    ))
+
+    renderProductData()
+
+
+})
+
+function renderProductData(){
+    let filterDataHTML = "";
+
+    if(filterData[0]){
+        filterData.forEach(el => {
+            filterDataHTML += `
+            <div class="productCard" onclick="ClickProduct(${el.id})">
+                <div class="product_image">
+                    <img src="./meesho/productImage/${el.img}"/>
+                </div>
+                <h3 class="product_name">${el.name}</h3>
+                <p class="product_price">
+                    <span>₹</span>
+                    <span>${el.price}</span>
+                </p>
+             </div>
+            `
+        })
+    }
+    else{
+        ProductData.forEach(el => {
+            filterDataHTML += `
+            <div class="productCard" onclick="ClickProduct(${el.id})">
+                <div class="product_image">
+                    <img src="./meesho/productImage/${el.img}"/>
+                </div>
+                <h3 class="product_name">${el.name}</h3>
+                <p class="product_price">
+                    <span>₹</span>
+                    <span>${el.price}</span>
+                </p>
+             </div>
+            `
+        }) 
+    }
+    
+    document.getElementById("product_category_displayId").innerHTML = filterDataHTML
+} 
+renderProductData()
+
+
+
+function ClickProduct(id){
+    localStorage.setItem("productId",JSON.stringify(id))
+    // window.location("./page/product.html")
+
+    alert("hii")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
